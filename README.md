@@ -1,4 +1,4 @@
-# ncu-course-programmingAndItsAppications
+# ncu-course-optoMechatronicsInterfacingLaboratory
 ## 簡介
 - **學校** : 國立中央大學
 - **開課單位** : 機械工程學系
