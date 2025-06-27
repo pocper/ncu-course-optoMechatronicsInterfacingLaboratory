@@ -185,13 +185,13 @@
 2. ASABUS介面卡開發-I2C  
   ASA_M128_v3即時將溫度計透過HMI-API傳遞給MATLAB繪製當前溫度
 
-3. ASABUS擴充介面卡開發-SPI智慧型IC
+3. ASABUS擴充介面卡開發-SPI智慧型IC  
   ASA_M128_V3透過SPI量測當前溫度，並透過MAX7219使四顆七段顯示器顯示出當前溫度，額外使七段顯示器閃爍(每1秒不顯示0.1秒)
 
-4. 資料擷取系統TIMER配合ADC使用
+4. 資料擷取系統TIMER配合ADC使用  
    將HW4_3的單/雙差動通道ADC結果傳遞至MATLAB，並使用FFT來查看頻譜
 
-5. ASA DAC介面卡開發及使用
+5. ASA DAC介面卡開發及使用  
   在 MATLAB 生成 200 筆 `sin(1000*t)` 的資料,轉換為 12 位元 ADC 值後,透過 HMI-API 傳送給 ASA_M128_V3 板子,ASA_M128_V3 再將資料傳送給外部的 DAC 晶片(MCP4922, 12-bits)輸入,DAC 晶片的輸出再接回 ASA_M128_V3 的 ADC 輸入,最後 ASA_M128_V3 將 ADC 讀取值透過 HMI-API 回傳給 MATLAB 進行頻譜分析
 
     <img src="./lab5_Exam/result/test5.png" alt="Test1-Lab5" width="50%">
