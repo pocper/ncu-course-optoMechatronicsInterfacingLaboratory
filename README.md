@@ -96,16 +96,17 @@
 
 4. 資料擷取系統TIMER配合ADC使用
    1. Timer/降頻器/Port應用  
-    f_cpu=11.0592[MHz], f_div=1024, f_timer3 = f_cpu/(f_div*(1+OCR_counter))  
-    分四個時段  
-      1. OCR3=1000, T_timer3~= 92.7[ms], PORTD0 = 1
-      2. OCR3=2000, T_timer3~=185.4[ms], PORTD0 = 0
-      3. OCR3=3000, T_timer3~=278.1[ms], PORTD0 = 1
-      4. OCR3=4000, T_timer3~=370.7[ms], PORTD0 = 0
-   
       <img src="./lab4/result/EX1.png" alt="Result1-Lab4" width="50%">
+
+      f_cpu=11.0592[MHz], f_div=1024, f_timer3 = f_cpu/(f_div*(1+OCR_counter))  
+      分四個時段  
+         1. OCR3=1000, T_timer3~= 92.7[ms], PORTD0 = 1
+         2. OCR3=2000, T_timer3~=185.4[ms], PORTD0 = 0
+         3. OCR3=3000, T_timer3~=278.1[ms], PORTD0 = 1
+         4. OCR3=4000, T_timer3~=370.7[ms], PORTD0 = 0
+   
    2. ADC應用(單純使用c語言)
-      設定ADC為10-bits轉換，參考電壓2.56[V]，並使用電源供應器供應0[V]/1.23[V]時，MCU所量到的ADC數值為多少。  
+      設定ADC為10-bits轉換，參考電壓2.56[V]，並使用電源供應器供應0[V]/1.23[V]時，MCU所量到的ADC數值為多少
 
       |電壓[v] | 理論ADC數值 | 實際ADC數值 |
       | ---  | ---           | --- |
@@ -142,10 +143,12 @@
 6. PWM輸出及橋式驅動電路
    1. 觀察PWM輸出頻率及波寬實驗  
       以不同頻率輸出PWM並觀察經過低通濾波器(100Ω, 10μF)的結果，由於方波是由多個頻率疊加而成，因此經過低通濾波器後，僅會讓低頻率($f_c=\frac{1}{2\pi*RC}=159[Hz]$)通過，而訊號切換(0/1)的地方則會變鈍
-      - f_cpu=11.0592[MHz], f_div=256, OCR2=107, f_timer2 = f_cpu/(f_div*(1+OCR2))=400[Hz]  
-      <img src="./lab6/result/EX1_N_256_OCR2_107.jpg" alt="Result1-Lab6" width="50%">
-      - f_cpu=11.0592[MHz], f_div=1024, OCR2=107, f_timer2 = f_cpu/(f_div*(1+OCR2))=100[Hz]  
-      <img src="./lab6/result/EX1_N_1024_OCR2_107.jpg" alt="Result2-Lab6" width="50%">
+      - f_cpu=11.0592[MHz], f_div=256, OCR2=107, f_timer2 = f_cpu/(f_div*(1+OCR2))=400[Hz]
+
+         <img src="./lab6/result/EX1_N_256_OCR2_107.jpg" alt="Result1-Lab6" width="50%">
+      - f_cpu=11.0592[MHz], f_div=1024, OCR2=107, f_timer2 = f_cpu/(f_div*(1+OCR2))=100[Hz]
+
+         <img src="./lab6/result/EX1_N_1024_OCR2_107.jpg" alt="Result2-Lab6" width="50%">
 
    2. 觀察單通道PWM波寬變化波形實驗  
       由MATLAB生成200筆```square(t, duty)```，t = 0~pi [s]，duty=5%, 25%，透過HMI-API丟資料給ASA_M128_V3當作輸入，再透過PB6輸出接收到的資料，經過低通濾波器(100Ω, 10μF)及分壓(1/2, atmega128 gpio電壓為0[V]/5[V], ADC內部參考電壓為2.56[V]，因此需要分壓)後，傳送回ASA_M128_V3的ADC，最後再把轉換結果傳回MATLAB繪圖
@@ -159,6 +162,7 @@
 
    3. 觀察三通道PWM三相弦波輸出波形實驗  
       由MATLAB生成180筆```(sin(t)+1)*255/2```，t = 0~2*pi [s]，透過HMI-API丟資料給ASA_M128_V3當作輸入，再透過PWMPrePro_step切割訊號成三等份，透過Timer耦合的腳位輸出三個相位訊號(+0, +1/3*pi, +2/3*pi)PORTB7:5，經過低通濾波器(100Ω, 10μF)後，傳給ASA_M128_V3的ADC當作輸入，最後再回傳給MATLAB繪圖
+
         <img src="./lab6/result/EX3_three_phase_sinWave.jpg" alt="Result5-Lab6" width="50%">
 
 7. 類比訊號處理  
